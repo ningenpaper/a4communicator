@@ -13,50 +13,48 @@
     font-style: normal;
 }
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    
+body {
+  margin: 0;
+  padding: 40px;
+  background: #f4f4f4;
+  font-family: 'HelveticaCustom', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
 
-    body {
-      margin: 0;
-      padding: 40px;
-      background: #f4f4f4;
-      font-family: 'HelveticaCustom', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #333;
-    }
+a {
+  color: black;
+  text-decoration: none;
+}
 
-    a{
-        color: black;
-        text-decoration: none;
-    }
+a:hover {
+  color: blue;
+}
 
-    a:hover{
-        color: blue;
-    }
+.header {
+  position: relative;
+  margin-bottom: 20px;
+}
 
-    .header {
-      position: relative;
-      margin-bottom: 20px;
-    }
+.header h1 {
+  font-size: 2rem;
+  text-align: center;
+  cursor: default;
+}
 
-    .header h1 {
-      font-size: 2rem;
-      text-align: center;
-      cursor: default;
-    }
-
- .description {
+.description {
   position: absolute;
   font-family: 'HelveticaCustom', sans-serif;
   top: calc(70%);
   left: 50%;
   transform: translateX(-50%);
-  background: black; /* grey 색상 + 90% 불투명도 */
+  background: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 10px 14px;
   font-size: 0.9rem;
@@ -71,63 +69,62 @@
   z-index: 10;
 }
 
-    .header:hover .description {
-      opacity: 1;
-      display: block;
-    }
+.header:hover .description {
+  display: block;
+}
 
-    .container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 1200px;
-    }
+.container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+}
 
-    .a4-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
+.a4-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-    .a4-box {
-      width: 100%;
-      aspect-ratio: 210 / 297;
-      border: 2px solid black;
-      background-color: white;
-      position: relative;
-      overflow: hidden;
-    }
+.a4-box {
+  width: 100%;
+  aspect-ratio: 210 / 297;
+  border: 2px solid black;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
 
-    .a4-box iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+.a4-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
-    .caption {
-        font-family: 'HelveticaCustom', sans-serif;
-      margin-top: 8px;
-      font-size: 0.9rem;
-      color: #555;
-    }
+.caption {
+  font-family: 'HelveticaCustom', sans-serif;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
 
-    @media (min-width: 768px) {
-      .a4-wrapper {
-        max-width: 20vw;
-      }
-    }
+@media (min-width: 768px) {
+  .a4-wrapper {
+    max-width: 20vw;
+  }
+}
   </style>
 </head>
 <body>
-  <div class="header">
+  <div class="header" id="header">
     <h1>A4 Communicator</h1>
-    <div class="description">
+    <div class="description" id="description">
         A4 Communicator is a collective of three teams that explores the interaction and potential expansion of language, images, and structure within the standard A4 format. We believe A4 is an optimized format for communication and sharing. As publishers from different field, Ningen Paper Press, Suzin Kwon and Soi Hong collaborate to initiate new dialogues within A4 sized paper.
     </div>
   </div>
@@ -152,5 +149,23 @@
       <div class="caption"><a href="https://soihong.com" target="_blank">Soi Hong</a></div>
     </div>
   </div>
+
+  <!-- ✅ 모바일용 터치 토글 스크립트 -->
+  <script>
+    const header = document.getElementById('header');
+    const description = document.getElementById('description');
+
+    let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (isTouchDevice) {
+      header.addEventListener('click', function () {
+        if (description.style.display === 'block') {
+          description.style.display = 'none';
+        } else {
+          description.style.display = 'block';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
